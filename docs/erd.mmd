@@ -1,0 +1,92 @@
+erDiagram
+    accounts ||--o{ leads : generates
+    accounts ||--o{ opportunities : owns
+    accounts ||--o{ subscriptions : signs
+    subscriptions ||--o{ renewals : creates
+    campaigns ||--o{ leads : sources
+    leads ||--o{ opportunities : converts
+    opportunities ||--o{ attribution_touches : receives
+    campaigns ||--o{ attribution_touches : influences
+    content_assets ||--o{ attribution_touches : influences
+
+    accounts {
+      uuid account_id PK
+      text account_name
+      text industry
+      text region
+      int employee_count
+      numeric annual_revenue_usd
+      enum account_tier
+      boolean partner_sourced
+    }
+
+    campaigns {
+      uuid campaign_id PK
+      text campaign_name
+      enum channel
+      numeric budget_usd
+      text status
+      date launch_date
+      text owner_team
+    }
+
+    content_assets {
+      uuid asset_id PK
+      text asset_name
+      enum asset_type
+      text theme
+      text owner_team
+      date published_at
+    }
+
+    leads {
+      uuid lead_id PK
+      uuid account_id FK
+      uuid campaign_id FK
+      text lead_name
+      text title
+      enum source_channel
+      enum stage
+    }
+
+    opportunities {
+      uuid opportunity_id PK
+      uuid account_id FK
+      uuid lead_id FK
+      text opportunity_name
+      enum stage
+      enum forecast_category
+      numeric amount
+      numeric probability_pct
+    }
+
+    attribution_touches {
+      uuid touch_id PK
+      uuid opportunity_id FK
+      uuid lead_id FK
+      uuid campaign_id FK
+      uuid asset_id FK
+      enum touch_position
+      numeric touch_weight
+      date touch_date
+    }
+
+    subscriptions {
+      uuid subscription_id PK
+      uuid account_id FK
+      uuid opportunity_id FK
+      numeric arr_value
+      enum billing_frequency
+      int term_months
+      date start_date
+      date end_date
+    }
+
+    renewals {
+      uuid renewal_id PK
+      uuid subscription_id FK
+      enum renewal_status
+      text risk_level
+      numeric renewal_arr
+      date renewal_date
+    }
