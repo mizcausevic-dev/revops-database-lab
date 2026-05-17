@@ -132,7 +132,7 @@ flowchart LR
 
 ## Analytics Queries
 
-The repo includes eight business-grade SQL analyses in [sql/queries.sql](/C:/Users/chaus/Documents/Codex/repos/revops-database-lab/sql/queries.sql):
+The repo includes eight business-grade SQL analyses in [sql/queries.sql](./sql/queries.sql):
 
 1. **Pipeline Coverage by Quarter**
 2. **CAC by Campaign Channel**
@@ -215,4 +215,3 @@ psql -h localhost -U postgres -d revops_lab -f sql/queries.sql
 - [LinkedIn](https://www.linkedin.com/in/mirzacausevic)
 - [Medium](https://medium.com/@mizcausevic)
 - [GitHub](https://github.com/mizcausevic-dev)
-
