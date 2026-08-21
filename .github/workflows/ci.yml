@@ -12,7 +12,7 @@ jobs:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_PASSWORD: pg
           POSTGRES_DB: revops_lab
         ports:
           - 5432:5432
@@ -30,16 +30,15 @@ jobs:
 
       - name: Apply schema
         env:
-          PGPASSWORD: postgres
+          PGPASSWORD: pg
         run: psql -h localhost -U postgres -d revops_lab -f sql/schema.sql
 
       - name: Seed data
         env:
-          PGPASSWORD: postgres
+          PGPASSWORD: pg
         run: psql -h localhost -U postgres -d revops_lab -f sql/seed.sql
 
       - name: Run analytics queries
         env:
-          PGPASSWORD: postgres
+          PGPASSWORD: pg
         run: psql -h localhost -U postgres -d revops_lab -f sql/queries.sql
-
